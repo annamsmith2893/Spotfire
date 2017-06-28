@@ -1,0 +1,191 @@
+***TIBCO Energy Forum:
+Sept 5 & 6, Houston
+Presentations span entire day
+Training
+(about 800 people attend)
+
+BLUE RIVER ANALYTICS, 6/28/2017
+
+###################################################################################################
+
+PRESENTATION 2, SABLE PERMIAN RESOURCES, ENERGY ANALYTICS WORKBENCH
+- purchased from Blue River Analytics
+- template is modifiable
+- could add internal data
+
+They pair blue river tools with the tools they purchased from Conduit
+- Conduit takes IHS data and makes it usable, sounds like
+
+THE TOOL:
+
+1. Page 1
+Left hand side: primary filters; color by, shape by, size by property controls for the map
+Rest of page: Map
+
+2. Page 2
+User Inputs
+- major stream
+- economic limiting rates
+- production rate time units
+- min months of data to git
+- normalize time zero to max prod within how many months?
+- outlier exclusion factor
+- hyberbolic decline type
+- filepath for saving parameter files
+- forecast name
+- min number of production value to fit 
+
+3. Page 3
+Economic inputs
+IP, b, decline
+Starting Price
+Long term max price
+Price reversion rate
+spits out IRR, NPV, etc.
+Documents all the calculations
+Shows a graph of price changing over the years
+
+4. Page 4
+Mark wells
+different look to mark wells outside of the map
+
+5. Page 5
+Curve Fitting
+spits a table with rate, decline, EUR, NPV, payout, IRR
+graph with well production charted with type curve over the production
+** ability to save fit table
+can change max # months for chart
+
+6. Page 6 
+EUR distribution, probit plots
+
+7. Page 7
+Variogram
+Krigg power? 
+-- seems like just a chart a variability
+
+8. Page 8
+Krigging
+Map krigging
+hit "calculate map" runs a krigging tool
+Can make the krigg data as detailed or smooth as you want
+Shows both a map and a 3D scatterplot of the krigging
+Example of a value to krigg on: EUR value
+Gives a predictive component - can hover over an area of a map, and will give you the EUR for that area
+So seems to return a value for any section in an area, even if there is no data point there? And will run better the more data points you have
+
+9. Page 9
+Probit Data Selection
+Ability to choose columns for probit analysis
+3 multiple select list boxes
+List 1:
+measure; contains the numeric column for plotting
+List 2:
+dimension; categorical column for slicing and dicing
+List 3:
+pass-through: for additional functionality of filtering and mapping
+
+10. Page 10
+2a probit - measure perspective
+Returns a tbale of probit statistics - p50, p90, p10, etc
+Can return multple probits in one plot (plot contains several log lines)
+map with well location
+Contains filters for seeing by operator
+
+11. Page 11
+2b probit - dimension
+
+12. Page 12
+EUR Map and Breakdown
+Just a map and bar chart with an EUR breakdown
+Ability to change bar chart x-axis, colors, etc.
+
+13. Page 13
+Cross Plot
+Can change axes with drop-down property selectors
+
+14. Page 14
+Production Time Curves
+
+side example: Density Plot
+Use Scatterplot
+Properties: change color by to be a solid black
+change size to be pretty big
+appearance: semi transparent
+- this is all you need to do to make a simple density plot!
+
+15. Page 15
+All based on time zero
+Type curve stream mapped over grayed out outliers (cum and rate)
+Well breakout of oil stream (cum and rate)
+Well breakout of gas stream (cum and rate)
+
+16. Page 16
+Map
+Producing Operators
+EUR (bar)
+First month liquid (bar)
+First month gas (bar)
+Avg fluid amout (pie)
+
+17. Page 17
+Well counts
+Can change axis values 
+
+############################################################################
+
+PRESENTAION 2: TERR
+Interactive demo, Alexander Klebanov, Chesapeake
+Demo data set: political/controversial issues
+Task: attempt to predict how they will vote, based on their stance on controversial issues
+
+Step 1: Registering a new data function
+
+One line of code: copying the data table (code just renaming the new copied table, assigning to it's value a data.frame() of the old table)
+Only input parameter: table
+Output: table
+Setting up basic data function - no notes needed here
+
+Example 2: Using property control to select subset of columns we want to deal with
+In this we list all the columns in original source table
+Column Property: a Boolean control to know whether or not the column values are included or not
+Writing a function that takes the average
+- function loops through the columns and gives an avarage based on columns given
+***Using paste and parse to actually write out the function..?? (ask for clarification again)
+Question: is there a way to make spotfire spit out errors like r studio does??
+
+Example 3: Iterative modeling
+Where some issues are more valuable to predictions than others?
+Now instead of using a set of hard-coded inputs, use column type input in average data function (assign to be out list box multi select)
+** Use spotfire map expression and the multi columns property control)
+map([mytable], ",", {propControl}) <--- something like that 
+
+** doing anything over a large chunk of data over hadoop or scala
+** research these
+
+- model would be trained on the data given, to try to predict what would happen next
+
+Model used: Random Forest
+- ensemble of decision tree models
+package in R: Random Forest
+Column selection property control for x 
+3 column drop down selector for selecting target, or response variable (y)
+Click to model button
+Output table:
+1. features
+2. percent increase - if we take away this feature from this model, the error will increase from this model
+3. node purity??
+As we consider more variables in a model, we can potentially start eliminating them as we see they have low variable importance
+
+Model used: K means
+- clustering
+- in our example, clustered our data into 4 groups of voters
+- can group wells as operationally or geologically similar
+K means: way of calculating the centriod points in n dimensional space, based on 4 diff groups - minimum sum of Euclidean distances in space (n-d space; 2 groups, 2D, 3 groups, 3D, etc)
+Residuals between actuals and predicted - look crappy since we made up the data
+if residuals are become tighter or closely distributed, we can be more confident in our model
+
+
+
+
+
