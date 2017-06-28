@@ -186,6 +186,11 @@ Residuals between actuals and predicted - look crappy since we made up the data
 if residuals are become tighter or closely distributed, we can be more confident in our model
 
 
+*** R in R
+
+
+
+
 
 
 
