@@ -1,0 +1,1 @@
+This is a github repository for Spotfire notes, ideas, TERR scripts, and lots of other fun stuff.
